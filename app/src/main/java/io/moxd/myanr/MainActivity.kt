@@ -13,12 +13,16 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var textView: TextView
 
+    private var on = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         textView = findViewById(R.id.textView)
         textView.text = "[ placeholder for some random values ]"
+
+        val on = true
 
 
         findViewById<Button>(R.id.run_button).setOnClickListener {
@@ -49,14 +53,15 @@ class MainActivity : AppCompatActivity() {
 
      private fun run() {
 
-        var an = true
+         on = true
+
 
         val mainHandler = Handler(Looper.getMainLooper())
 
         mainHandler.post(object : Runnable {
             override fun run() {
 
-                if (an) {
+                if (on) {
                     mainHandler.postDelayed(this, 1500)
                     textView.text = Random.nextInt().toString()
                 }
@@ -66,6 +71,9 @@ class MainActivity : AppCompatActivity() {
 
 
      private fun stop() {
+
+         on = false
+         textView.text = "Thread has been stopped"
 
     }
 
