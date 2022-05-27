@@ -55,13 +55,18 @@ class MainActivity : AppCompatActivity() {
 
          on = true
 
-
+        // Erstellung eines Handlers (sendet und verarbeitet Nachrichten) auf dem MainLooper
         val mainHandler = Handler(Looper.getMainLooper())
 
+        //Hiermit wird eine Operation auf dem UI-Thread ausgeführt
+         // Ein Runnable Object ist ein Objekt, das in eine Message Queue gesendet werden kann, um dort ausgeführt zu werden
+         // Der Handler sendet das Objekt dorthin
         mainHandler.post(object : Runnable {
+            //
             override fun run() {
 
                 if (on) {
+                    // Das Runnable wird in die Message Queue gelegt und nach 1500ms ausgeführt
                     mainHandler.postDelayed(this, 1500)
                     textView.text = Random.nextInt().toString()
                 }
